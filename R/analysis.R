@@ -187,7 +187,7 @@ GO_analyse <- function(
                             )
                         mart <- useMart(
                             biomart="ensembl",
-                            dataset=biomart_dataset
+                            dataset=biomart_dataset,host="www.ensembl.org"
                             )
                         microarray <- microarray_match$microarray
                     }
@@ -221,7 +221,7 @@ GO_analyse <- function(
                     "Loading requested dataset", biomart_dataset, "...",
                     fill=TRUE
                     )
-                mart <- useMart(biomart="ensembl", dataset=biomart_dataset)
+                mart <- useMart(biomart="ensembl", dataset=biomart_dataset,host="www.ensembl.org")
                 }
             # if the user gave a microarray name
             else{
@@ -239,7 +239,7 @@ GO_analyse <- function(
                     "from requested biomart dataset", biomart_dataset,
                     fill=TRUE
                     )
-                mart <- useMart(biomart="ensembl", dataset=biomart_dataset)
+                mart <- useMart(biomart="ensembl", dataset=biomart_dataset,host="www.ensembl.org")
             }
         }
         print(mart)
