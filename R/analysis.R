@@ -647,7 +647,7 @@ mart_from_ensembl <- function(sample_gene,biomart_name){
                 "...", fill=TRUE
                 )
             return(useMart(
-                biomart=biomart_name,
+                biomart=biomart_name,host="www.ensembl.org",
                 dataset=prefix2dataset[
                     prefix2dataset$prefix == prefix,]$dataset
             ))
