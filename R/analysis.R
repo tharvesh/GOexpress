@@ -59,7 +59,7 @@ GO_analyse <- function(
                     )
                 # Try to find an appropriate biomaRt Ensembl dataset from the
                 # gene prefix
-                mart <- mart_from_ensembl(sample_gene)
+                mart <- mart_from_ensembl(sample_gene,biomart_name)
                 # if the gene id has not an identifiable Ensembl id prefix
                 if (!class(mart) == "Mart"){
                     # Try to find an appropriate biomaRt microarray dataset
@@ -631,7 +631,7 @@ GO_analyse <- function(
 }
 
 
-mart_from_ensembl <- function(sample_gene){
+mart_from_ensembl <- function(sample_gene,biomart_name){
     # If the gene id starts by "ENS" (most cases, except 3 handled separately
     # below)
     if (length(grep(pattern="^ENS", x=sample_gene))){
