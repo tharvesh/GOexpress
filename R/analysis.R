@@ -1,6 +1,6 @@
 
 GO_analyse <- function(
-    eSet, f, subset=NULL, biomart_dataset="", microarray="",
+    eSet, f, subset=NULL, biomart_name = "", biomart_dataset="", microarray="",
     method="randomForest", rank.by="rank", do.trace=100, ntree=1000,
     mtry=ceiling(2*sqrt(nrow(eSet))), GO_genes=NULL, all_GO=NULL,
     all_genes=NULL, FUN.GO=mean, ...){
@@ -80,7 +80,7 @@ GO_analyse <- function(
                         microarray <- microarray_match$microarray
                         biomart_dataset <- microarray_match$dataset
                         mart <- useMart(
-                            biomart="ensembl",
+                            biomart=biomart_name,
                             dataset=biomart_dataset
                             )
                     }
@@ -120,7 +120,7 @@ GO_analyse <- function(
                         fill=TRUE
                         )
                     mart <- useMart(
-                        biomart="ensembl",
+                        biomart=biomart_name,
                         dataset=biomart_dataset)
                     # Leave microarray to the current valid value
                 }
@@ -186,7 +186,7 @@ GO_analyse <- function(
                             fill=TRUE
                             )
                         mart <- useMart(
-                            biomart="ensembl",
+                            biomart=biomart_name,
                             dataset=biomart_dataset,host="www.ensembl.org"
                             )
                         microarray <- microarray_match$microarray
@@ -221,7 +221,7 @@ GO_analyse <- function(
                     "Loading requested dataset", biomart_dataset, "...",
                     fill=TRUE
                     )
-                mart <- useMart(biomart="ensembl", dataset=biomart_dataset,host="www.ensembl.org")
+                mart <- useMart(biomart=biomart_name, dataset=biomart_dataset,host="www.ensembl.org")
                 }
             # if the user gave a microarray name
             else{
@@ -239,7 +239,7 @@ GO_analyse <- function(
                     "from requested biomart dataset", biomart_dataset,
                     fill=TRUE
                     )
-                mart <- useMart(biomart="ensembl", dataset=biomart_dataset,host="www.ensembl.org")
+                mart <- useMart(biomart=biomart_name, dataset=biomart_dataset,host="www.ensembl.org")
             }
         }
         print(mart)
@@ -647,7 +647,7 @@ mart_from_ensembl <- function(sample_gene){
                 "...", fill=TRUE
                 )
             return(useMart(
-                biomart="ensembl",
+                biomart=biomart_name,
                 dataset=prefix2dataset[
                     prefix2dataset$prefix == prefix,]$dataset
             ))
@@ -669,7 +669,7 @@ mart_from_ensembl <- function(sample_gene){
             fill=TRUE)
         return(
             useMart(
-                biomart="ensembl",
+                biomart=biomart_name,
                 dataset="scerevisiae_gene_ensembl"
                 )
             )
